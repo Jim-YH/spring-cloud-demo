@@ -1,0 +1,22 @@
+server:
+  port: 8180  #端口
+
+#spring:
+#  mail:
+#    host: smtp.exmail.qq.com
+#    username: zhanyihuang@haocaiqi.net
+#    password: hpycPFk8J6kSR6eN
+
+eureka:
+  instance:
+    hostname: localhost #实力名称
+    prefer-ip-address: true #暴露ip
+  client:
+    register-with-eureka: false #是否注册自身到eureka服务器
+    fetch-registry: false #是否从eureka服务器获取注册信息
+    service-url:
+          defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+          #设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址
+  server:
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 10000 #清理间隙

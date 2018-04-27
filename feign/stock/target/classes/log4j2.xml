@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="off" monitorInterval="1800">
+
+    <properties>
+        <property name="LOG_HOME">/Users/jim/java/spring-cloud-demo/log/feign/stock</property>
+        <!--<property name="LOG_HOME">/root/cloud-service/log/gateway</property>-->
+        <property name="APP_LOG_NAME">stock</property>
+    </properties>
+
+    <Appenders>
+        <Console name="CONSOLE"   target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+
+        <RollingRandomAccessFile name="LOG_INFO" fileName="${LOG_HOME}/${APP_LOG_NAME}-info.log" filePattern="${LOG_HOME}/${date:yyyy-MM}/${APP_LOG_NAME}-%d{yyyy-MM-dd}-info.log">
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%class{36}:%L %M] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <!--<SizeBasedTriggeringPolicy size = "50 MB" />-->
+            </Policies>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="LOG_DEBUG" fileName="${LOG_HOME}/${APP_LOG_NAME}-debug.log" filePattern="${LOG_HOME}/${date:yyyy-MM}/${APP_LOG_NAME}-%d{yyyy-MM-dd}-debug.log">
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%class{36}:%L %M] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <!--<SizeBasedTriggeringPolicy size = "50 MB" />-->
+            </Policies>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="LOG_ERROR" fileName="${LOG_HOME}/${APP_LOG_NAME}-error.log" filePattern="${LOG_HOME}/${date:yyyy-MM}/${APP_LOG_NAME}-%d{yyyy-MM-dd}-error.log">
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%class{36}:%L %M] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- 3rdparty Loggers -->
+        <logger name="net.haocaiqi.cloud.gateway" level="debug" />
+        <logger name="org.springframework.core" level="info" />
+        <logger name="org.springframework.beans" level="info" />
+        <logger name="org.springframework.context" level="info" />
+        <logger name="org.springframework.web" level="info" />
+        <logger name="org.springframework" level="info" />
+        <logger name="org.apache.http" level="info" />
+        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="info" />
+        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="info" />
+        <Logger name="org.apache.catalina.startup.DigesterFactory" level="info" />
+        <Logger name="org.jooq" level="debug" />
+        <Logger name="io.undertow" level="error" />
+        <Logger name="com.netflix" level="error" />
+        <!--   <Logger name="com.corundumstudio.socketio" level="fatal" />
+          <Logger name="com.fasterxml.jackson.databind" level="fatal" /> -->
+
+        <!-- http://stackoverflow.com/questions/30431776/using-scheduled-and-enablescheduling-but-gives-nosuchbeandefinitionexception  -->
+
+        <root level="debug">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="LOG_INFO" />
+            <appender-ref ref="LOG_DEBUG" />
+            <appender-ref ref="LOG_ERROR" />
+        </root>
+    </Loggers>
+</Configuration>
