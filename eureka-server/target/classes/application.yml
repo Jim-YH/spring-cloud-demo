@@ -1,12 +1,6 @@
 server:
   port: 8180  #端口
 
-#spring:
-#  mail:
-#    host: smtp.exmail.qq.com
-#    username: zhanyihuang@haocaiqi.net
-#    password: hpycPFk8J6kSR6eN
-
 eureka:
   instance:
     hostname: localhost #实力名称
@@ -20,3 +14,12 @@ eureka:
   server:
     enable-self-preservation: false #关闭自我保护
     eviction-interval-timer-in-ms: 10000 #清理间隙
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Jim-YH/spring-cloud-demo.git #配置git仓库地址
+          search-paths: config #配置仓库路径
+          default-label: master #配置仓库的分支

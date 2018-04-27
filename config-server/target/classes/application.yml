@@ -1,0 +1,13 @@
+server:
+  port: 8888  #端口
+
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Jim-YH/spring-cloud-demo.git #配置git仓库地址
+          search-paths: config #配置仓库路径
+          default-label: master #配置仓库的分支
