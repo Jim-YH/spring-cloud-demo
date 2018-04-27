@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("config")
 public class ConfigController {
 
-    @Value("${version}")
-    String version;
+    @Value("${value}")
+    String value;
 
-    @GetMapping(value = "getVersion", produces = "application/json")
-    public String getVersion(){
-        return version;
+    @GetMapping(value = "getValue", produces = "application/json")
+    public String getValue(){
+        return value;
     }
 
 }
