@@ -11,3 +11,12 @@ spring:
           uri: https://github.com/Jim-YH/spring-cloud-demo.git #配置git仓库地址
           search-paths: config #配置仓库路径
           default-label: master #配置仓库的分支
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8180/eureka/
+  instance:
+     preferIpAddress: true
+     lease-expiration-duration-in-seconds: 30
+     lease-renewal-interval-in-seconds: 10

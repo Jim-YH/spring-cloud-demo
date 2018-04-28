@@ -1,16 +1,10 @@
 server:
   port: 8181 #端口
-  error:
-    whitelabel:
-      enabled: false
-  tomcat:
-    remote-ip-header: x-forwarded-for
-    protocol_header: x-forwarded-proto
-    port-header: X-Forwarded-Port
-  use-forward-headers: true
+
 spring:
   application:
     name: spring-cloud-zuul #服务名称
+
 eureka:
   client:
     serviceUrl:
@@ -19,14 +13,15 @@ eureka:
      preferIpAddress: true
      lease-expiration-duration-in-seconds: 30
      lease-renewal-interval-in-seconds: 10
+
 zuul:
   routes:
     auth:
         path: /order/**
         serviceId: spring-cloud-feign-order
   host:
-    socket-timeout-millis: 120000
-    connect-timeout-millis: 120000
+    socket-timeout-millis: 10000
+    connect-timeout-millis: 10000
 
 feign:
   hystrix:
@@ -38,7 +33,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 120000
+            timeoutInMilliseconds: 10000
   threadpool:
     default:
       coreSize: 200 #并发执行的最大线程数，默认10

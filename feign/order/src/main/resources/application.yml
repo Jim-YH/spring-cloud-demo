@@ -1,13 +1,6 @@
 server:
   port: 8282 #端口
-  error:
-    whitelabel:
-      enabled: false
-  tomcat:
-    remote-ip-header: x-forwarded-for
-    protocol_header: x-forwarded-proto
-    port-header: X-Forwarded-Port
-  use-forward-headers: true
+
 spring:
   application:
     name: spring-cloud-feign-order #服务名称
@@ -42,16 +35,14 @@ spring:
     config:
       label: master
       profile: dev
-      uri: http://localhost:8888/
-
+#      uri: http://localhost:8888/
+      discovery:
+        enabled: true
+        service-id: spring-cloud-config-server
 
 mybatis:
   type-aliases-package: jim.demo.spring.cloud.entity
   mapper-locations: classpath:mybatis/mapper/*.xml
-  base-package: jim.demo.spring.cloud.mapper
-#      # 合并多个DruidDataSource的监控数据
-#      useGlobalDataSourceStat: true
-
 
 eureka:
   client:
@@ -70,7 +61,7 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 10000
 
 hmily:
     tcc :

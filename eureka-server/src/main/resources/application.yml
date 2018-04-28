@@ -13,5 +13,5 @@ eureka:
           #设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址
   server:
     enable-self-preservation: false #关闭自我保护
-    eviction-interval-timer-in-ms: 10000 #清理间隙
+    eviction-interval-timer-in-ms: 3000 #清理间隙
 
